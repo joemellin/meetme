@@ -1,9 +1,10 @@
-%p#notice= notice
+.container
+	.row
+		.col-sm-4.col-sm-offset-4
+			%p#notice= notice
 
-%p
-  %b Description:
-  = @idea.description
-
-= link_to 'Edit', edit_idea_path(@idea)
-\|
-= link_to 'Back', ideas_path
+			%p
+				%b Description:
+				= @idea.description
+			- if @idea.user == current_user
+				= link_to 'Edit', edit_idea_path(@idea)

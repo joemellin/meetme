@@ -19,6 +19,7 @@
 						%p Submitted By
 						%h4= link_to "#{idea.user.name}", idea.user.fburl, :target => "_blank"
 					.center
-						= link_to 'Edit', edit_idea_path(idea)
-						= link_to 'Destroy', idea, :method => :delete, :data => { :confirm => 'Are you sure?' }
+						- if idea.user == current_user
+							= link_to 'Edit', edit_idea_path(idea)
+							= link_to 'Destroy', idea, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
