@@ -1,7 +1,9 @@
-%h1 Editing idea
+.container
+	.row
+		.col-md-4.col-md-offset-4
+			.center
+				%h1 Editing Idea
 
-= render 'form'
+			= render 'form'
 
-= link_to 'Show', @idea
-\|
-= link_to 'Back', ideas_path
+			= link_to 'Show', @idea

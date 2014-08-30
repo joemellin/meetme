@@ -1,8 +1,14 @@
-= simple_form_for(@idea) do |f|
-  = f.error_notification
-
-  .form-inputs
-    = f.input :description
-
-  .form-actions
-    = f.button :submit
+= form_for(@idea) do |f|
+  - if @idea.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@idea.errors.count, "error")
+        prohibited this pin from being saved:
+      %ul
+        - @idea.errors.full_messages.each do |msg|
+          %li= msg
+  .form-group
+    = f.label :description
+    = f.text_field :description, class: "form-control"
+  .form-group
+    = f.submit class: "btn btn-primary"
