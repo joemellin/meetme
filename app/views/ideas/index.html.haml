@@ -1,25 +1,12 @@
 .container
 	.row
 		.col-md-12
-			.jumbotron.center{:style => "margin-top:30px;"}
-				%h1 Yeah! You made it! 
-				%h3 Currently coding.. 
-				%h3 Will let you know when more is built :)
-
-.container
-	.row
-		.col-md-12
 			.center
 				%h1 A Bunch of Great Ideas
 			- @ideas.each do |idea|
 				.col-sm-3	
 					.center
+						= link_to (image_tag idea.image(:medium), :class => "img-responsive"), idea.user.fburl, :target => "_blank"
 						%h3=link_to "#{idea.description}", idea
-						= link_to (image_tag idea.user.image, :class => "img-circle img-responsive"), idea.user.fburl, :target => "_blank"
 						%p Submitted By
 						%h4= link_to "#{idea.user.name}", idea.user.fburl, :target => "_blank"
-					.center
-						- if idea.user == current_user
-							= link_to 'Edit', edit_idea_path(idea)
-							= link_to 'Destroy', idea, :method => :delete, :data => { :confirm => 'Are you sure?' }
-

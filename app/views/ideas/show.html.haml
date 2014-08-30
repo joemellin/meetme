@@ -2,13 +2,12 @@
 	= image_tag @idea.image.url(:cover)
 .container
 	.row
-		.col-sm-12
-			%p#notice= notice
-			%p
-				%b Description:
-				= @idea.description
+		.col-sm-1.center
+			=link_to "Back to Ideas", ideas_path, :class => "btn btn-default", :style => "margin-top:25px;"
+		.col-sm-10.center
+			%h1= @idea.description
+			%p= @idea.about
+		.col-sm-1.center
 			- if @idea.user == current_user
-				= link_to 'Edit', edit_idea_path(@idea)
-			= image_tag @idea.image.url(:medium)
-			= image_tag @idea.image.url(:small)
-			= image_tag @idea.image.url(:thumb)
+				= link_to 'Edit', edit_idea_path(@idea), :class => "btn btn-default", :style => "margin-top:25px;"
+				= link_to 'Delete', idea_path, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-default", :style => "margin-top:25px;"

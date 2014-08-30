@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140830174841) do
+ActiveRecord::Schema.define(version: 20140830193118) do
 
   create_table "ideas", force: true do |t|
     t.string   "description"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140830174841) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.text     "about"
   end
 
   add_index "ideas", ["user_id"], name: "index_ideas_on_user_id"
