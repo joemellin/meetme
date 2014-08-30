@@ -10,14 +10,14 @@ class IdeasController < ApplicationController
   end
 
   def new
-    @idea = Idea.new
+    @idea = current_user.ideas.build
   end
 
   def edit
   end
 
   def create
-    @idea = Idea.new(idea_params)
+    @idea = current_user.ideas.build(idea_params)
 
     respond_to do |format|
       if @idea.save
