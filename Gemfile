@@ -15,6 +15,7 @@ gem 'high_voltage'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'simple_form'
+gem 'paperclip', github: 'thoughtbot/paperclip'
 
 group :development, :test do
 	gem 'better_errors'

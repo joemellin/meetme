@@ -3,6 +3,7 @@ class IdeasController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
+
   def index
     @ideas = Idea.all
   end
@@ -62,7 +63,7 @@ class IdeasController < ApplicationController
     end
     
     def idea_params
-      params.require(:idea).permit(:description)
+      params.require(:idea).permit(:description, :image)
     end
 
 end
