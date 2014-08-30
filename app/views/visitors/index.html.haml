@@ -1,0 +1,31 @@
+- unless user_signed_in?
+	.container
+		.col-sm-12.center{:class => "jumbotron", :style => "margin-top:50px;"}
+			%h1 Hi! My name is Joe. 
+			%p I like meeting people and learning by doing.
+			.row
+				.col-md-6.col-sm-8.col-md-offset-3.col-sm-offset-2 
+					= link_to "Collaborate with Me", signin_path , :class => "btn btn-default btn-lg", :style => "margin-top:30px; font-size:1.5em; width:100%;"
+	.container
+		.row
+			.col-md-12
+				%hr
+				.center
+					%h5 Join These Other Amazing Collaborators
+		.row
+			- @users.each do |user|
+				= render user
+	.container
+		.row
+			.col-md-12
+				%hr
+				.center
+					%h5 Make your own colaboration site
+					%p I have opensourced this code and created a tutorial so that you can create your own page to discover people to collaborate with :)
+					:plain
+						<iframe src="http://ghbtns.com/github-btn.html?user=joemellin&repo=bootstrap&type=watch&count=true&size=large" height="30" width="170" frameborder="0" scrolling="0" style="width:170px; height: 30px;" allowTransparency="true"></iframe><iframe src="http://ghbtns.com/github-btn.html?user=joemellin&repo=bootstrap&type=fork&count=true&size=large" height="30" width="170" frameborder="0" scrolling="0" style="width:170px; height: 30px;" allowTransparency="true"></iframe>
+- else
+	.container
+		.row
+			.col-md-12
+				

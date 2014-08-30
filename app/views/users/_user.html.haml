@@ -1,0 +1,9 @@
+
+- if user_signed_in?
+	.col-md-3.center
+		= link_to (image_tag user.image, :class => "img-circle img-responsive"), user.fburl, :target => "_blank"
+		%h1= link_to user.name, user.fburl, :target => "_blank"
+- else
+	.col-sm-2.col-xs-3.center
+		= link_to (image_tag user.image, :class => "img-circle img-responsive"), user.fburl, :target => "_blank"
+		%h4= link_to user.name, user.fburl, :target => "_blank"
