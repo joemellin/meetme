@@ -6,7 +6,7 @@
 			- @ideas.each do |idea|
 				.col-sm-3	
 					.center
-						= link_to (image_tag idea.image(:medium), :class => "img-responsive"), idea
+						= link_to (image_tag idea.image(:medium), :class => "img-responsive img-rounded"), idea
 						%h3=link_to "#{idea.description}", idea
 						%p
 							By
