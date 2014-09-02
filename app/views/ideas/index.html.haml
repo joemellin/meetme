@@ -6,7 +6,8 @@
 			- @ideas.each do |idea|
 				.col-sm-3	
 					.center
-						= link_to (image_tag idea.image(:medium), :class => "img-responsive"), idea.user.fburl, :target => "_blank"
+						= link_to (image_tag idea.image(:medium), :class => "img-responsive"), idea
 						%h3=link_to "#{idea.description}", idea
-						%p Submitted By
-						%h4= link_to "#{idea.user.name}", idea.user.fburl, :target => "_blank"
+						%p
+							By
+							= link_to "#{idea.user.name}", idea.user.fburl, :target => "_blank", :style => "color:#000;"
