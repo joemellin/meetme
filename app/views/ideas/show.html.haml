@@ -11,3 +11,12 @@
 			- if @idea.user == current_user
 				= link_to 'Edit', edit_idea_path(@idea), :class => "btn btn-default", :style => "margin-top:25px;"
 				= link_to 'Delete', idea_path, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-default", :style => "margin-top:25px;"
+	%hr
+	.row
+		.col-md-6.col-md-offset-3.center
+			-unless @idea.iterations.first.nil?
+				- @idea.iterations.sort { |b,a| a.created_at <=> b.created_at }.each do |iter|
+					%h2= iter.title
+					= image_tag iter.image(:large), :class => "img-rounded img-responsive"
+					%p{:style => "padding-top:20px;"}= iter.description
+					%hr

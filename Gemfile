@@ -17,6 +17,7 @@ gem 'omniauth-facebook'
 gem 'simple_form'
 gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'aws-sdk', '~> 1.20.0'
+gem 'cocoon'
 
 group :development, :test do
 	gem 'better_errors'

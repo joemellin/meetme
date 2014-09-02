@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @iteration.title
+
+= link_to 'Edit', edit_iteration_path(@iteration)
+\|
+= link_to 'Back', iterations_path
