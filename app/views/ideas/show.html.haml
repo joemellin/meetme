@@ -15,7 +15,7 @@
 	.row
 		.col-md-6.col-md-offset-3.center
 			-unless @idea.iterations.first.nil?
-				- @idea.iterations.sort { |b,a| a.created_at <=> b.created_at }.each do |iter|
+				- @idea.iterations.sort { |a,b| a.created_at <=> b.created_at }.each do |iter|
 					%h2= iter.title
 					= image_tag iter.image(:large), :class => "img-rounded img-responsive"
 					%p{:style => "padding-top:20px;"}= iter.description
