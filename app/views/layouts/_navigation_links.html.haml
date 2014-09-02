@@ -1,5 +1,6 @@
+
 - if user_signed_in?
-	%li= link_to 'Suggest a Project', new_idea_path , :class => "btn-default btn", :style => "line-height:50%; margin-top:6px"
+	%li= link_to 'New Idea', new_idea_path , :class => "btn btn-default ", :style => "padding-top:8px; padding-bottom:8px;margin-top:6px;"
 	%li= link_to 'Sign out', signout_path
 	
 - else
