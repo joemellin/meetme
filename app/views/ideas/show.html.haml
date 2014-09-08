@@ -20,3 +20,4 @@
 					= image_tag iter.image(:large), :class => "img-rounded img-responsive"
 					%p{:style => "padding-top:20px;"}= iter.description
 					%hr
+			= link_to "+ Add Iteration", new_idea_iteration_path(@idea), :class => "btn btn-default btn-lg"

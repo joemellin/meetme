@@ -5,5 +5,5 @@
 		%h1= link_to user.name, user.fburl, :target => "_blank"
 - else
 	.col-sm-2.col-xs-3.center
-		= link_to (image_tag user.image, :class => "img-circle img-responsive"), user.fburl, :target => "_blank"
+		= link_to (image_tag user.image, :class => "img-circle img-responsive"), user.fburl, :target => "_blank", :style => "h"
 		%h4= link_to user.name, user.fburl, :target => "_blank"

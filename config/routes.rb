@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :iterations
+ 
 
-  resources :ideas
+  resources :ideas do
+  	resources :iterations
+  end	
 
   resources :users
   root to: 'visitors#index'

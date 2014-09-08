@@ -1,14 +1,17 @@
-= simple_form_for(@iteration) do |f|
+= simple_form_for([@idea, @iteration]) do |f|
 	= f.error_notification
 
-	.form-inputs
-		= f.input :title
+	.form-group
+		= f.label :title
+		= f.text_field :title
 	.form-group
 		= f.label :image
 		= f.file_field :image, class: "form-control"
-	.form-inputs
-		= f.input :description
-	.form-inputs
-		= f.input :idea_id
-	.form-actions
-		= f.button :submit
+	.form-group
+		= f.label :description
+		= f.text_field :description
+	.form-group
+		= f.hidden_field :idea_id
+	.form-group
+		= f.submit class: "btn btn-primary"
+end

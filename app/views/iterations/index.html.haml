@@ -1,19 +1,15 @@
 %h1 Listing iterations
 
 %table
-  %tr
-    %th Title
-    %th
-    %th
-    %th
-
-  - @iterations.each do |iteration|
-    %tr
-      %td= iteration.title
-      %td= link_to 'Show', iteration
-      %td= link_to 'Edit', edit_iteration_path(iteration)
-      %td= link_to 'Destroy', iteration, :method => :delete, :data => { :confirm => 'Are you sure?' }
+	%tr
+		%th Title
+		%th
+		%th
+		%th
 
 %br
 
-= link_to 'New Iteration', new_iteration_path
+- @idea.iterations.each do |idea|
+	= idea.created_at
+
+= link_to 'New Iteration', new_idea_iteration_path

@@ -1,3 +1,4 @@
+=begin
 require 'test_helper'
 
 class IterationsControllerTest < ActionController::TestCase
@@ -47,3 +48,4 @@ class IterationsControllerTest < ActionController::TestCase
     assert_redirected_to iterations_path
   end
 end
+=end

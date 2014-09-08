@@ -1,7 +1,11 @@
-%h1 Editing iteration
+.container
+	.row
+		.col-md-4.col-md-offset-4
+			.center
+				%h1 Editing iteration
 
-= render 'form'
+			= render 'form'
 
-= link_to 'Show', @iteration
-\|
-= link_to 'Back', iterations_path
+			= link_to 'Show', @iteration
+			\|
+			= link_to 'Back', idea_iterations_path
