@@ -6,6 +6,8 @@ class IdeasController < ApplicationController
 
   def index
     @ideas = Idea.all
+    @results = Iteration.all.sort { |p2, p1| p1.created_at <=> p2.created_at }
+
   end
 
   def show

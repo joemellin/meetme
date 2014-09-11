@@ -4,9 +4,14 @@
 	.row
 		.col-sm-1.center
 			=link_to "Back to Ideas", ideas_path, :class => "btn btn-default", :style => "margin-top:25px;"
-		.col-sm-10.center
+		.col-sm-6.center
 			%h1= @idea.description
 			%p= @idea.about
+		.col-sm-4.center
+			= image_tag @idea.user.image, :class => "img-circle"
+			%p
+				by 
+				=link_to "#{@idea.user.name}", @idea.user.fburl
 		.col-sm-1.center
 			- if @idea.user == current_user
 				= link_to 'Edit', edit_idea_path(@idea), :class => "btn btn-default", :style => "margin-top:25px;"

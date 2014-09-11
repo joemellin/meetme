@@ -1,13 +1,26 @@
 .container
 	.row
-		.col-md-12
+		.col-md-9
+			.center{:style => "padding:10px 0 20px"}
+				%H1 New Iterations
+			%hr
+
+			- @results.each do |iter|
+				.row
+					.col-xs-3.col-sm-offset-2
+						= image_tag iter.image(:large), :class => "img-rounded img-responsive"
+					.col-xs-6
+						%h3{:style => "padding-top:20px;"}= link_to "#{iter.title}", "/ideas/#{iter.idea_id}"
+						%p{:style => "padding-top:20px;"}= iter.description
+				%hr
+						
+		.col-md-3
 			.center
-				%h1 A Bunch of Great Ideas
-			- @ideas.each do |idea|
-				.col-sm-3	
-					.center
-						= link_to (image_tag idea.image(:medium), :class => "img-responsive img-rounded"), idea
-						%h3=link_to "#{idea.description}", idea
-						%p
-							By
-							= link_to "#{idea.user.name}", idea.user.fburl, :target => "_blank", :style => "color:#000;"
+				%p 
+					Your Projects
+				- @ideas.each do |idea|
+					- if idea.user == current_user
+						.div{:style => "padding: 20px 0 20px;"}
+							= image_tag idea.image(:small), :class => "img-rounded img-responsive"
+							= link_to "#{idea.description}",idea
+					
