@@ -19,10 +19,16 @@
 			- @results.each do |iter|
 				.row
 					.col-xs-12.center
-						%h3{:style => "margin:0px 0 5px 0"}= link_to "#{iter.title}", "/ideas/#{iter.idea_id}"
-						%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-						= image_tag iter.image(:large), :class => "img-rounded img-responsive"
-						%p{:style => "padding-top:20px;color:#888;"}= iter.description
+						- if iter.feedback
+							%h3{:style => "margin:0px 0 5px 0"}= link_to "#{iter.title}", "/ideas/#{iter.idea_id}"
+							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+							.well
+								%p=iter.feedback
+						- else
+							%h3{:style => "margin:0px 0 5px 0"}= link_to "#{iter.title}", "/ideas/#{iter.idea_id}"
+							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+							= image_tag iter.image(:large), :class => "img-rounded img-responsive"
+							%p{:style => "padding-top:20px;color:#888;"}= iter.description
 				%hr
 						
 		.col-sm-2.col-sm-offset-1.hidden-xs.hidden-sm

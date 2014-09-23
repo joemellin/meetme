@@ -1,9 +1,16 @@
 = simple_form_for([@idea, @iteration]) do |f|
 	= f.error_notification
+	%p Enter Feedback or
+	.form-group
+		= f.label :feedback
+		= f.text_field :feedback
 
+	%p Enter a Prototype Image (If there is feedback the below info will not show)
 	.form-group
 		= f.label :title
 		= f.text_field :title
+	
+	%p Document a prototype (If there is feedback the below info will not show)
 	.form-group
 		= f.label :image
 		= f.file_field :image, class: "form-control"
