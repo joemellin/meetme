@@ -19,11 +19,13 @@
 			- @results.each do |iter|
 				.row
 					.col-xs-12.center
-						- if iter.image == !nil
-							%h3{:style => "margin:0px 0 5px 0"}= link_to "#{iter.title}", "/ideas/#{iter.idea_id}"
+						- if iter.feedback?
+							%h3{:style => "margin:0px 0 5px 0"}= link_to "User Feedback", "/ideas/#{iter.idea_id}"
 							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-							.well
-								%p=iter.feedback
+							.well{:style => "text-align:left;"}
+								%p=iter.feedback.gsub(/\n/, '<br />').html_safe
+							
+							
 						- else
 							%h3{:style => "margin:0px 0 5px 0"}= link_to "#{iter.title}", "/ideas/#{iter.idea_id}"
 							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
