@@ -8,9 +8,9 @@
         %span.icon-bar
         %span.icon-bar
       - if user_signed_in?
-        = link_to 'Home', ideas_path, class: 'navbar-brand'
+        = link_to 'JOE', ideas_path, class: 'navbar-brand'
       - else
-        = link_to 'Home', root_path, class: 'navbar-brand'
+        = link_to 'JOE', root_path, class: 'navbar-brand'
     .collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right.center
         = render 'layouts/navigation_links'

@@ -1,29 +1,38 @@
 .container
 	.row
-		.col-md-6
-			.center{:style => "padding:10px 0 20px"}
-				%H1 New Iterations
-			%hr
+		.col-sm-2.hidden-xs.hidden-sm
+			.center{:style => "padding:20px 0 5px;text-transform: uppercase;"}
+				%p Colaborators
+			- @users.each do |u|
+				.row.well{:style => "padding: 20px 0 20px;"}
+					.col-xs-12
+						= link_to (image_tag u.image, :class => "img-rounded img-responsive"), u.fburl, :target => "_blank"
+					.col-xs-12.center
+						%p{:style => "padding-top:5px;"}= link_to u.name, u.fburl, :target => "_blank"
 
+
+
+		.col-sm-6.col-sm-offset-1
+			.center{:style => "padding:20px 0 0px;text-transform: uppercase;"}
+				%p Recent Iterations
+				%hr
 			- @results.each do |iter|
 				.row
-					.col-xs-6
+					.col-xs-12.center
+						%h3{:style => "margin:0px 0 5px 0"}= link_to "#{iter.title}", "/ideas/#{iter.idea_id}"
+						%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
 						= image_tag iter.image(:large), :class => "img-rounded img-responsive"
-					.col-xs-6
-						%h3{:style => "padding-top:20px;"}= link_to "#{iter.title}", "/ideas/#{iter.idea_id}"
-						%p{:style => "padding-top:20px;"}= iter.description
+						%p{:style => "padding-top:20px;color:#888;"}= iter.description
 				%hr
 						
-		.col-md-6
-			.center{:style => "padding:10px 0 20px"}
-				%H1 Ideas
-			%hr
+		.col-sm-2.col-sm-offset-1.hidden-xs.hidden-sm
+			.center{:style => "padding:20px 0 5px;text-transform: uppercase;"}
+				%p Ideas
 			- @ideas.each do |idea|
 
-				.row{:style => "padding: 20px 0 20px;"}
-					.col-xs-6
+				.row.well{:style => "padding: 20px 0 20px;"}
+					.col-xs-12
 						= image_tag idea.image(:medium), :class => "img-rounded img-responsive"
-					.col-xs-6
-						%h3{:style => "padding-top:20px;"}= link_to "#{idea.description}",idea
-						%p{:style => "padding-top:20px;"}= idea.about
-				%hr
+					.col-xs-12.center
+						%p{:style => "padding-top:5px;"}= link_to "#{idea.description}",idea
+						
