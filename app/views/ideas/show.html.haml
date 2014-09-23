@@ -29,7 +29,7 @@
 				%p Recent Iterations
 				-unless @idea.iterations.first.nil?
 					- @idea.iterations.sort { |b,a| a.created_at <=> b.created_at }.each do |iter|
-						- if iter.feedback
+						- if iter.image == !nil
 							%h2 User Feedback
 							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
 							.well
