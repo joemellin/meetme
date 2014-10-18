@@ -1,48 +1,14 @@
 Meetme2
 ================
 
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
+This is a repo of a portfolio website that I am building. 
 
-Rails Composer is open source and supported by subscribers. Please join RailsApps to support development of Rails Composer.
+The idea is to have people interested in your work, come and join your community so you can build a relationship with them / learn from them.
 
-Problems? Issues?
------------
-
-Need help? Ask on Stack Overflow with the tag 'railsapps.'
-
-Your application contains diagnostics in the README file. Please provide a copy of the README file when reporting any issues.
-
-If the application doesn’t work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include the diagnostics.
-
-Ruby on Rails
--------------
-
-This application requires:
-
-- Ruby 2.1.2
-- Rails 4.1.1
-
-Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
+Ass seen here [on my site](www.joemellin.com)
 
 Getting Started
 ---------------
+Just fork and rock it.  Let me know if you have any ideas for improvements!
 
-Documentation and Support
--------------------------
-
-Issues
--------------
-
-Similar Projects
-----------------
-
-Contributing
-------------
-
-Credits
--------
-
-License
--------
+:)
