@@ -44,7 +44,7 @@ class IterationsController < ApplicationController
 
 		respond_to do |format|
 			if @iteration.save
-				format.html { redirect_to idea_path(@idea), notice: 'Iteration was successfully created.' }
+				format.html { redirect_to idea_path(@idea) }
 				format.json { render :show, status: :created, location: @iteration }
 			else
 				format.html { render :new }
@@ -58,7 +58,7 @@ class IterationsController < ApplicationController
 	def update
 		respond_to do |format|
 			if @idea.iterations.update(iteration_params)
-				format.html { redirect_to idea_path(@idea), notice: 'Iteration was successfully updated.' }
+				format.html { redirect_to idea_path(@idea) }
 				format.json { render :show, status: :ok, location: @iteration }
 			else
 				format.html { render :edit }
