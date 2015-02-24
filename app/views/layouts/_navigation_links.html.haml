@@ -1,7 +1,9 @@
-
 - if user_signed_in?
 	%li= link_to 'New Idea', new_idea_path , :class => "btn btn-default ", :style => "padding-top:8px; padding-bottom:8px;margin-top:6px;"
 	%li= link_to 'Sign out', signout_path
 	
 - else
 	%li= link_to 'Sign in', signin_path
+%li{:style =>"padding-top:10px; padding-bottom:8px;"}
+	:plain
+		<iframe src="https://ghbtns.com/github-btn.html?user=joemellin&repo=meetme&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
