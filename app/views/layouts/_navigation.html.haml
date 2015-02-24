@@ -7,10 +7,10 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      - if user_signed_in?
-        = link_to 'JOE', ideas_path, class: 'navbar-brand'
-      - else
-        = link_to 'JOE', root_path, class: 'navbar-brand'
+
+      = link_to 'JOE', ideas_path, class: 'navbar-brand'
+      = link_to 'f', "https://www.facebook.com/joemellin", class: 'navbar-brand'
+      = link_to 'in', "https://www.linkedin.com/in/joemellin", class: 'navbar-brand'
     .collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right.center
         = render 'layouts/navigation_links'
