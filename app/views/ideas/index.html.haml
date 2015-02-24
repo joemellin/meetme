@@ -2,13 +2,26 @@
 	.row
 		.col-sm-2.hidden-xs.hidden-sm
 			.center{:style => "padding:20px 0 5px;text-transform: uppercase;"}
+				%p Meet Joe
+			.row.well{:style => "padding: 20px 0 20px;"}
+				.col-xs-12
+					= link_to (image_tag @joe.image, :class => "img-rounded img-responsive"), @joe.fburl, :target => "_blank"
+				.col-xs-12
+					.center
+						%p{:style => "padding-top:5px;text-transform: uppercase;"}= link_to @joe.name, @joe.fburl, :target => "_blank"
+					%p 
+						Thanks for checking out my projects, please say hi!
+						= link_to 'f', "https://www.facebook.com/joemellin"
+						= link_to 'in', "https://www.linkedin.com/in/joemellin"
+
+			.center{:style => "padding:20px 0 5px;text-transform: uppercase;"}
 				%p Colaborators
 			- @users.each do |u|
 				.row.well{:style => "padding: 20px 0 20px;"}
 					.col-xs-12
 						= link_to (image_tag u.image, :class => "img-rounded img-responsive"), u.fburl, :target => "_blank"
 					.col-xs-12.center
-						%p{:style => "padding-top:5px;"}= link_to u.name, u.fburl, :target => "_blank"
+						%p{:style => "padding-top:5px;text-transform: uppercase;"}= link_to u.name, u.fburl, :target => "_blank"
 
 
 
@@ -35,12 +48,12 @@
 						
 		.col-sm-2.col-sm-offset-1.hidden-xs.hidden-sm
 			.center{:style => "padding:20px 0 5px;text-transform: uppercase;"}
-				%p Ideas
+				%p Recent Ideas
 			- @ideas.each do |idea|
 
 				.row.well{:style => "padding: 20px 0 20px;"}
 					.col-xs-12
 						= image_tag idea.image(:medium), :class => "img-rounded img-responsive"
 					.col-xs-12.center
-						%p{:style => "padding-top:5px;"}= link_to "#{idea.description}",idea
+						%p{:style => "padding-top:5px;text-transform: uppercase;"}= link_to "#{idea.description}",idea
 						
