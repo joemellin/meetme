@@ -31,6 +31,7 @@
 				%hr
 			- @results.each do |iter|
 				.row
+					/%p #{Idea.find_by_id(iter.idea_id)}
 					.col-xs-12.center
 						- if iter.feedback?
 							%h3{:style => "margin:0px 0 5px 0"}= link_to "User Feedback", "/ideas/#{iter.idea_id}"
