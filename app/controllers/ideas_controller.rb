@@ -6,9 +6,9 @@ class IdeasController < ApplicationController
 
 
   def index
-    @ideas = Idea.order('created_at DESC').limit(10)
+    @ideas = Idea.order('created_at DESC')
     @results = Iteration.all.sort { |p2, p1| p1.created_at <=> p2.created_at }
-    @users = User.order("RANDOM()")
+    @users = User.order("RANDOM()").limit(5)
     @joe = User.find_by_id(1)
   end
 

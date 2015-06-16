@@ -1,5 +1,5 @@
 -# navigation styled for Bootstrap 3.0
-%nav.navbar.navbar-default.navbar-fixed-top
+%nav.navbar.navbar-default.navbar-fixed-top{:style => "background-color:white"}
 	.container
 		.navbar-header
 			%button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
@@ -7,9 +7,10 @@
 				%span.icon-bar
 				%span.icon-bar
 				%span.icon-bar
-		=link_to "JOE", root_path,:class => 'navbar-brand'
+			=link_to "The Work of JOE", root_path,:class => 'navbar-brand', :style => "font-weight:bold; color:black; font-size:1.3em"
 		.collapse.navbar-collapse
 			%ul.nav.navbar-nav.navbar-right.center
 				= render 'layouts/navigation_links'
+
 
 

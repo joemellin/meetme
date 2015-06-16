@@ -1,6 +1,7 @@
-- if user_signed_in?
-	%li= link_to 'New Idea', new_idea_path 
-	%li= link_to 'Sign out', signout_path
-	
-- else
-	%li= link_to 'Sign in', signin_path
+%li{:style => "padding:7px"}
+	=link_to (image_tag "http://www.turkishtowelcollection.com/images/linkedin-3-256.png", :style => "height:36px"), "https://www.linkedin.com/in/joemellin", :style => "padding:0px"
+%li{:style => "padding:11px 15px 5px 7px"}
+	=link_to (image_tag "http://s30.postimg.org/his8vlsnl/twitter_bird.gif", :style => "height:26px"), "https://twitter.com/joemellin?lang=en", :style => "padding:0px"
+%li
+	:plain 
+		<div style="margin-top: 10px;"><iframe src="https://ghbtns.com/github-btn.html?user=joemellin&repo=meetme&type=star&count=true&size=large&v=2" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></div>

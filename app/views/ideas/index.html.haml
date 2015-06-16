@@ -1,60 +1,17 @@
-.container
+.container		
 	.row
-		.col-sm-2.hidden-xs.hidden-sm
-			.center{:style => "padding:20px 0 5px;text-transform: uppercase;"}
-				%p Meet Joe
-			.row.well{:style => "padding: 20px 0 20px;"}
-				.col-xs-12
-					= link_to (image_tag @joe.image, :class => "img-rounded img-responsive"), @joe.fburl, :target => "_blank"
-				.col-xs-12
-					.center
-						%p{:style => "padding-top:5px;text-transform: uppercase;"}= link_to @joe.name, @joe.fburl, :target => "_blank"
-					%p 
-						Thanks for checking out my projects, please say hi!
-						= link_to 'f', "https://www.facebook.com/joemellin"
-						= link_to 'in', "https://www.linkedin.com/in/joemellin"
-
-			.center{:style => "padding:20px 0 5px;text-transform: uppercase;"}
-				%p Colaborators
-			- @users.each do |u|
-				.row.well{:style => "padding: 20px 0 20px;"}
-					.col-xs-12
-						= link_to (image_tag u.image, :class => "img-rounded img-responsive"), u.fburl, :target => "_blank"
-					.col-xs-12.center
-						%p{:style => "padding-top:5px;text-transform: uppercase;"}= link_to u.name, u.fburl, :target => "_blank"
-
-
-
-		.col-sm-6.col-sm-offset-1
-			.center{:style => "padding:20px 0 0px;text-transform: uppercase;"}
-				%p Recent Iterations
-				%hr
-			- @results.each do |iter|
-				.row
-					/%p #{Idea.find_by_id(iter.idea_id)}
-					.col-xs-12.center
-						- if iter.feedback?
-							%h3{:style => "margin:0px 0 5px 0"}= link_to "User Feedback", "/ideas/#{iter.idea_id}"
-							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-							.well{:style => "text-align:left;"}
-								%p=iter.feedback.gsub(/\n/, '<br />').html_safe
-							
-							
-						- else
-							%h3{:style => "margin:0px 0 5px 0"}= link_to "#{iter.title}", "/ideas/#{iter.idea_id}"
-							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-							= image_tag iter.image(:large), :class => "img-rounded img-responsive"
-							%p{:style => "padding-top:20px;color:#888;"}= iter.description
-				%hr
-						
-		.col-sm-2.col-sm-offset-1.hidden-xs.hidden-sm
-			.center{:style => "padding:20px 0 5px;text-transform: uppercase;"}
-				%p Recent Ideas
-			- @ideas.each do |idea|
-
-				.row.well{:style => "padding: 20px 0 20px;"}
-					.col-xs-12
-						= image_tag idea.image(:medium), :class => "img-rounded img-responsive"
-					.col-xs-12.center
-						%p{:style => "padding-top:5px;text-transform: uppercase;"}= link_to "#{idea.description}",idea
-						
+		.center{:style => "padding:20px 0 5px;"}
+			%p{:style => "color:black;font-weight:bold"} Recent Projects
+		- @ideas.each do |idea|
+			.col-sm-2.center{:style => "padding-bottom:30px;"}
+				= image_tag idea.image(:medium), :class => "img-rounded img-responsive"
+			
+				%p.center{:style => "padding-top:5px;color:#000"}= link_to "#{idea.description}",idea,:style => "color:black"
+	.row
+		.center{:style => "padding:20px 0 5px;"}
+			%p{:style => "color:black;font-weight:bold"} Collaborators
+		- @users.each do |u|
+			.col-sm-2.center{:style => "padding-bottom:30px;"}
+				= link_to (image_tag u.image, :class => "img-rounded img-responsive"), u.fburl, :target => "_blank"
+				%p.center{:style => "padding-top:5px;"}= link_to u.name, u.fburl, :target => "_blank", :style => "color:black"
+					
