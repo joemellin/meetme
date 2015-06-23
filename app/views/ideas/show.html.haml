@@ -14,13 +14,14 @@
 				= link_to "+ Add Iteration", new_idea_iteration_path(@idea), :class => "btn btn-default ", :style => "margin-top:10px; width:115px;"
 				= link_to 'Edit', edit_idea_path(@idea), :class => "btn btn-default", :style => "margin-top:10px;"
 				= link_to 'Delete', idea_path, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-default", :style => "margin-top:10px;"
+				= link_to "+ Add Idea", new_idea_path, :class => "btn btn-default ", :style => "margin-top:10px; width:115px;"
 
 
 		.col-sm-6.col-sm-offset-1.center.well
 		
 			%p Recent Iterations
 			-unless @idea.iterations.first.nil?
-				- @idea.iterations.sort { |a,b| a.created_at <=> b.created_at }.each do |iter|
+				- @idea.iterations.sort { |b,a| a.created_at <=> b.created_at }.each do |iter|
 					- if iter.feedback?
 						%h2 User Feedback
 						%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
