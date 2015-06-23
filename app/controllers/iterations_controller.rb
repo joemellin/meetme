@@ -55,17 +55,26 @@ class IterationsController < ApplicationController
 
 	# PATCH/PUT /iterations/1
 	# PATCH/PUT /iterations/1.json
+
 	def update
-		respond_to do |format|
-			if @idea.iterations.update(iteration_params)
-				format.html { redirect_to idea_path(@idea) }
-				format.json { render :show, status: :ok, location: @iteration }
-			else
-				format.html { render :edit }
-				format.json { render json: @iteration.errors, status: :unprocessable_entity }
+			#1st you retrieve the post thanks to params[:post_id]
+			@idea = Idea.find(params[:idea_id])
+			#2nd you retrieve the comment thanks to params[:id]
+			@iteration = @idea.iterations.find(params[:id])
+
+			respond_to do |format|
+				if @iteration.update_attributes(params[:iteration])
+					#1st argument of redirect_to is an array, in order to build the correct route to the nested resource comment
+					format.html { redirect_to([@idea, @iteration], :notice => 'Iteration was successfully updated.') }
+					format.xml  { head :ok }
+				else
+					format.html { render :action => "edit" }
+					format.xml  { render :xml => @iteration.errors, :status => :unprocessable_entity }
+				end
 			end
 		end
-	end
+
+
 
 	# DELETE /iterations/1
 	# DELETE /iterations/1.json
