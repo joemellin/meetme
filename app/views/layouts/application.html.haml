@@ -7,9 +7,9 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body{:style => "background-color:#ccc;"}
+  %body{:style => "background-color:#555;"}
     %header
       = render 'layouts/navigation'
-    %main{:role => "main", :style =>"background-color:#ccc"}
+    %main{:role => "main", :style =>"background-color:#555"}
       = render 'layouts/messages'
       = yield
