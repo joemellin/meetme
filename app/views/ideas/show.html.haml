@@ -16,7 +16,7 @@
 				= link_to 'Delete', idea_path, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-default", :style => "margin-top:10px;"
 
 
-		.col-sm-6.col-sm-offset-1.center
+		.col-sm-6.col-sm-offset-1.center.well
 		
 			%p Recent Iterations
 			-unless @idea.iterations.first.nil?
@@ -26,6 +26,10 @@
 						%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
 						.well{:style => "text-align:left;"}
 							%p=iter.feedback.gsub(/\n/, '<br />').html_safe
+					- elsif iter.pop?
+						%h2= iter.popword
+						%p{:style => "color:#888"} CLICKABLE PROTOTYPE
+						%iframe{:allowTransparency => "true", :frameborder => "0", :height => "908", :src => "https://popapp.in/w/projects/#{iter.pop}/embedded", :width => "420"}
 					- else
 						%h2= iter.title
 						%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago

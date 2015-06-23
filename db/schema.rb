@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140923221713) do
+ActiveRecord::Schema.define(version: 20150623042716) do
 
   create_table "ideas", force: true do |t|
     t.string   "description"
@@ -38,9 +38,17 @@ ActiveRecord::Schema.define(version: 20140923221713) do
     t.datetime "image_updated_at"
     t.text     "description"
     t.text     "feedback"
+    t.string   "pop"
+    t.string   "popword"
   end
 
   add_index "iterations", ["idea_id"], name: "index_iterations_on_idea_id"
+
+  create_table "ratings", force: true do |t|
+    t.string   "success"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

@@ -92,6 +92,6 @@ class IterationsController < ApplicationController
 
 		# Never trust parameters from the scary internet, only allow the white list through.
 		def iteration_params
-			params.require(:iteration).permit(:title, :idea_id, :image, :description, :feedback)
+			params.require(:iteration).permit(:title, :idea_id, :image, :description, :feedback, :pop, :popword)
 		end
 end
