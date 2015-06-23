@@ -1,12 +1,12 @@
 = simple_form_for([@idea, @iteration]) do |f|
 	= f.error_notification
-	%p enter POP embed code
+	%p Enter POP embed code
 	.form-group
-		= f.label :pop
-		= f.text_area :pop, :cols => "60", :rows => "10"
+		%p Title
+		= f.text_area :popword, :cols => "60", :rows => "1"
 	.form-group
-		= f.label :popword
-		= f.text_area :popword, :cols => "60", :rows => "10"
+		%p POP Embed Code
+		= f.text_area :pop, :cols => "60", :rows => "1"
 	%hr
 	%p OR enter a users feedback
 	.form-group
