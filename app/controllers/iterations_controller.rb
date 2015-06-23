@@ -70,7 +70,7 @@ class IterationsController < ApplicationController
 	# DELETE /iterations/1
 	# DELETE /iterations/1.json
 	def destroy
-		@iteration.destroy
+		@idea.iterations.find(params[:id]).destroy
 		respond_to do |format|
 			format.html { redirect_to ideas_path, notice: 'Iteration was successfully destroyed.' }
 			format.json { head :no_content }
