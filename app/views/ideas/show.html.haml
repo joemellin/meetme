@@ -17,35 +17,29 @@
 
 
 		.col-sm-6.col-sm-offset-1.center
-			#accordion.panel-group
-				.panel.panel-default{:style => "position: relative;  top: -50px; "}
-					.panel-heading
-						%h4.panel-title.center
-							%a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne", :style => "line-height:0px; color:#888"}
-								ABOUT THIS IDEA
-					#collapseOne.panel-collapse.collapse
-						.panel-body
-							= @idea.about
-			.div{:style => "position: relative;  top: -40px; "}
-				%p Recent Iterations
-				-unless @idea.iterations.first.nil?
-					- @idea.iterations.sort { |b,a| a.created_at <=> b.created_at }.each do |iter|
-						- if iter.feedback?
-							%h2 User Feedback
-							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-							.well{:style => "text-align:left;"}
-								%p=iter.feedback.gsub(/\n/, '<br />').html_safe
-						- else
-							%h2= iter.title
-							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-							= image_tag iter.image(:large), :class => "img-rounded img-responsive"
-							%p{:style => "padding-top:20px;"}= iter.description
-						%hr
+		
+			%p Recent Iterations
+			-unless @idea.iterations.first.nil?
+				- @idea.iterations.sort { |b,a| a.created_at <=> b.created_at }.each do |iter|
+					- if iter.feedback?
+						%h2 User Feedback
+						%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+						.well{:style => "text-align:left;"}
+							%p=iter.feedback.gsub(/\n/, '<br />').html_safe
+					- else
+						%h2= iter.title
+						%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+						= image_tag iter.image(:large), :class => "img-rounded img-responsive"
+						%p{:style => "padding-top:20px;"}= iter.description
+					%hr
 			
 		.col-sm-2.col-sm-offset-1.center.hidden-xs
 			%p Idea Owner
 			= image_tag @idea.user.image, :class => "img-responsive img-rounded", :style => "margin:20px 0 5px 0px;"
 			%p
 				=link_to "#{@idea.user.name}", @idea.user.fburl
+			%p
+				%b About this Project
+			%p= @idea.about
 
 	
