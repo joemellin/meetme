@@ -20,7 +20,7 @@
 			.div{:style => "color:white;font-size:2em;padding: 15px 0 20px"}
 				Creation Process
 			-unless @idea.iterations.first.nil?
-				- @idea.iterations.sort { |b,a| a.created_at <=> b.created_at }.each do |iter|
+				- @idea.iterations.sort { |a,b| a.created_at <=> b.created_at }.each do |iter|
 					.well{:style => "background-color:white"}
 						- if iter.feedback?
 							%h2 User Feedback
@@ -30,7 +30,7 @@
 						- elsif iter.pop?
 							%h2 POP Prototype
 							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-							%h2= iter.popword
+							%p= iter.popword
 							
 							%iframe{:allowTransparency => "true", :frameborder => "0", :height => "908", :src => "https://popapp.in/w/projects/#{iter.pop}/embedded", :width => "420"}
 							%p{:style => "color:#888"} CLICKABLE PROTOTYPE
