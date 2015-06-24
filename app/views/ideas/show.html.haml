@@ -1,50 +1,49 @@
-.div{:style => "border-bottom: 1px solid #ddd"}
-	= image_tag @idea.image.url(:cover)
-.div
+.div{:style => "border-bottom: 1px solid #ddd; "}
+.container{:style => "padding-top:20px;"}
 	.row
-		.col-xs-6.col-xs-offset-3.center{:style => "position: relative;  top: -120px; "}
-			%h1{:style => "color:#fff; font-size: 4em; line-height:0px; text-shadow: 0px 3px 8px #888; "}
-				= @idea.description
+		.col-sm-3.center.hidden-xs
+			= image_tag @idea.image.url(:small), :class => "img-responsive img-circle"
 
-.container
-	.row
-		.col-sm-2.center
-			=link_to "Back to Ideas", ideas_path, :class => "btn btn-default", :style => "margin-top:0px;width:115px"
 			- if @idea.user == current_user
 				= link_to "+ Add Iteration", new_idea_iteration_path(@idea), :class => "btn btn-default ", :style => "margin-top:10px; width:115px;"
 				= link_to 'Edit', edit_idea_path(@idea), :class => "btn btn-default", :style => "margin-top:10px;"
 				= link_to 'Delete', idea_path, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-default", :style => "margin-top:10px;"
 				= link_to "+ Add Idea", new_idea_path, :class => "btn btn-default ", :style => "margin-top:10px; width:115px;"
-
-
-		.col-sm-6.col-sm-offset-1.center.well
-		
-			%p Recent Iterations
+		.col-sm-6.center
+			%span{:style => "font-size:3em;color:white"}= @idea.description
+			%p{:style => "color:white"} 
+				by
+				=link_to "#{@idea.user.name}", @idea.user.fburl, :style => "color:white"
+			%p{:style => "color:white;font-size:1.2em;"}= @idea.about
+		.col-sm-3.center.hidden-xs
+			= image_tag @idea.user.image, :class => "img-responsive img-circle", :style => "margin:20px 0 5px 0px;"
+	.row
+		.col-sm-6.col-sm-offset-3.center
+			.div{:style => "color:white;font-size:2em;padding: 15px 0 20px"}
+				Creation Process
 			-unless @idea.iterations.first.nil?
 				- @idea.iterations.sort { |b,a| a.created_at <=> b.created_at }.each do |iter|
-					- if iter.feedback?
-						%h2 User Feedback
-						%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-						.div{:style => "text-align:left;"}
-							%p=iter.feedback.gsub(/\n/, '<br />').html_safe
-					- elsif iter.pop?
-						%h2= iter.popword
-						%p{:style => "color:#888"} CLICKABLE PROTOTYPE
-						%iframe{:allowTransparency => "true", :frameborder => "0", :height => "908", :src => "https://popapp.in/w/projects/#{iter.pop}/embedded", :width => "420"}
-					- else
-						%h2= iter.title
-						%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-						= image_tag iter.image(:large), :class => "img-rounded img-responsive"
-						%p{:style => "padding-top:20px;"}= iter.description
-					=link_to "Edit Iteration", edit_idea_iteration_path(@idea,iter)
-					%hr
-		.col-sm-2.col-sm-offset-1.center.hidden-xs
-			%p Idea Owner
-			= image_tag @idea.user.image, :class => "img-responsive img-rounded", :style => "margin:20px 0 5px 0px;"
-			%p
-				=link_to "#{@idea.user.name}", @idea.user.fburl
-			%p
-				%b About this Project
-			%p= @idea.about
+					.well{:style => "background-color:white"}
+						- if iter.feedback?
+							%h2 User Feedback
+							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+							.div{:style => "text-align:left;"}
+								%p=iter.feedback.gsub(/\n/, '<br />').html_safe
+						- elsif iter.pop?
+							%h2 POP Prototype
+							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+							%h2= iter.popword
+							
+							%iframe{:allowTransparency => "true", :frameborder => "0", :height => "908", :src => "https://popapp.in/w/projects/#{iter.pop}/embedded", :width => "420"}
+							%p{:style => "color:#888"} CLICKABLE PROTOTYPE
+						- else
+							%h2= iter.title
+							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+							= image_tag iter.image(:large), :class => "img-rounded img-responsive"
+							%p{:style => "padding-top:20px;"}= iter.description
+						=link_to "Edit Iteration", edit_idea_iteration_path(@idea,iter)
+						
+	
+			
 
 	
