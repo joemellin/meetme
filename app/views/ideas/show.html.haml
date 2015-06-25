@@ -25,29 +25,64 @@
 			.div{:style => "color:white;font-size:2em;padding: 15px 0 20px"}
 				Creation Process
 			-unless @idea.iterations.first.nil?
-				- @idea.iterations.sort { |a,b| a.created_at <=> b.created_at }.each do |iter|
-					.well{:style => "background-color:white"}
-						- if iter.feedback?
-							%h2 User Feedback
-							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-							.div{:style => "text-align:left;"}
-								%p=iter.feedback.gsub(/\n/, '<br />').html_safe
-						- elsif iter.pop?
-							%h2 POP Prototype
-							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-							%p= iter.popword
-							
-							%iframe{:allowTransparency => "true", :frameborder => "0", :height => "908", :src => "https://popapp.in/w/projects/#{iter.pop}/embedded", :width => "420"}
-							%p{:style => "color:#888"} CLICKABLE PROTOTYPE
-						- else
-							%h2= iter.title
-							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-							= image_tag iter.image(:large), :class => "img-rounded img-responsive"
-							%p{:style => "padding-top:20px;"}= iter.description
-						=link_to "Edit Iteration", edit_idea_iteration_path(@idea,iter)
-	
+				- if current_user
+					- @idea.iterations.sort { |a,b| a.created_at <=> b.created_at }.each do |iter|
+						.well{:style => "background-color:white"}
+							- if iter.feedback?
+								%h2 User Feedback
+								%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+								.div{:style => "text-align:left;"}
+									%p=iter.feedback.gsub(/\n/, '<br />').html_safe
+							- elsif iter.pop?
+								%h2 POP Prototype
+								%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+								%p= iter.popword
+								
+								%iframe{:allowTransparency => "true", :frameborder => "0", :height => "908", :src => "https://popapp.in/w/projects/#{iter.pop}/embedded", :width => "420"}
+								%p{:style => "color:#888"} CLICKABLE PROTOTYPE
+							- else
+								%h2= iter.title
+								%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+								= image_tag iter.image(:large), :class => "img-rounded img-responsive"
+								%p{:style => "padding-top:20px;"}= iter.description
+							- if @idea.user == current_user
+								=link_to "Edit Iteration", edit_idea_iteration_path(@idea,iter)
+							- else
+					:javascript
+						mixpanel.track("Idea Page - Logged In");
+				- else
+					- @idea.iterations.limit(3).sort { |a,b| a.created_at <=> b.created_at }.each do |iter|
+						.well{:style => "background-color:white"}
+							- if iter.feedback?
+								%h2 User Feedback
+								%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+								.div{:style => "text-align:left;"}
+									%p=iter.feedback.gsub(/\n/, '<br />').html_safe
+							- elsif iter.pop?
+								%h2 POP Prototype
+								%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+								%p= iter.popword
+								
+								%iframe{:allowTransparency => "true", :frameborder => "0", :height => "908", :src => "https://popapp.in/w/projects/#{iter.pop}/embedded", :width => "420"}
+								%p{:style => "color:#888"} CLICKABLE PROTOTYPE
+							- else
+								%h2= iter.title
+								%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+								= image_tag iter.image(:large), :class => "img-rounded img-responsive"
+								%p{:style => "padding-top:20px;"}= iter.description
+							- if @idea.user == current_user
+								=link_to "Edit Iteration", edit_idea_iteration_path(@idea,iter)
+							- else
+					.div{:style => "padding: 10px 0 10px"}
+						%h3{:style => "color:white"} Join to view all iterations | #{@remaning} more
+						%p{:style => "color:white"}  and get a nice email from Joe :)
+					=link_to (image_tag "https://assets.podomatic.net/images/splash/icon-signup-fb.png?1418681672"), signin_path, :style => "width: 100%; line-height:50px;font-size:2em;"
+					:javascript
+						mixpanel.track("Idea Page - Logged Out");
+				.div{:style => "padding: 20px 0 0px"}
+					%hr
 		.col-sm-3.center.hidden-xs
-			.div{:style => "padding-top:40px "}
+			.div{:style => "padding-top:0px "}
 				= image_tag @idea.user.image, :class => "img-responsive img-circle"
 	
 			

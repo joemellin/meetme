@@ -22,4 +22,9 @@
 						%p.center{:style => "color:#ccc;font-size:1em;height:80px;"} #{@count} sign-ups (LIVE)
 					- else
 						%p.center{:style => "color:#ccc;font-size:1em;height:80px;"}=idea.outcome 
-		
+- if current_user
+	:javascript
+		mixpanel.track("Home Page - Logged In");
+- else
+	:javascript
+		mixpanel.track("Home Page - Logged Out");

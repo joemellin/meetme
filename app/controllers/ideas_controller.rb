@@ -14,6 +14,7 @@ class IdeasController < ApplicationController
 
   def show
     @count = User.all.count
+    @remaning = @idea.iterations.count - 3
   end
 
   def new
