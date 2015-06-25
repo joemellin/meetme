@@ -11,6 +11,11 @@
 				= link_to 'Edit', edit_idea_path(@idea), :class => "btn btn-default", :style => "margin-top:10px;"
 				= link_to 'Delete', idea_path, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-default", :style => "margin-top:10px;"
 				= link_to "+ Add Idea", new_idea_path, :class => "btn btn-default ", :style => "margin-top:10px; width:115px;"
+			.div{:style => "padding:30px 0 5px;"}
+				%p{:style => "color:#ccc;font-size:.8em;"} OTHER PROJECTS
+			- @other.each do |other|
+				= link_to (image_tag other.image(:thumb), :class => "img-circle img-responsive"), other
+				.center{:style => "padding:5px 0 20px;color:#000;font-size:.9em;"}= link_to "#{other.description}", other,:style => "color:white"
 		.col-sm-6.center
 			%span{:style => "font-size:3em;color:white"}= @idea.description
 			%p{:style => "color:white"} 
@@ -85,9 +90,13 @@
 				.div{:style => "padding: 20px 0 0px"}
 					%hr
 		.col-sm-3.center.hidden-xs
-			.div{:style => "padding-top:20px "}
+			.div{:style => "padding:20px 0 96px; "}
 				= image_tag @idea.user.image, :class => "img-responsive img-circle"
-	
+			.div{:style => "padding:30px 0 5px;"}
+				%p{:style => "color:#ccc;font-size:.8em;"} OTHER COLLABORATORS
+			- @colabs.each do |other|
+				= link_to (image_tag other.image, :class => "img-circle img-responsive", :style => "width:100px;"), other
+				.center{:style => "padding:5px 0 20px;color:#000;font-size:.9em;"}= link_to "#{other.name}", other,:style => "color:white"
 			
 
 	

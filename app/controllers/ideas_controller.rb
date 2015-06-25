@@ -6,7 +6,7 @@ class IdeasController < ApplicationController
 
 
   def index
-    @ideas = Idea.order("RANDOM()").where(user_id: 1)
+    @ideas = Idea.where(user_id: 1)
     @results = Iteration.all.sort { |p2, p1| p2.created_at <=> p1.created_at }
     @users = User.order("RANDOM()").limit(12)
     @count = User.all.count
@@ -15,6 +15,8 @@ class IdeasController < ApplicationController
   def show
     @count = User.all.count
     @remaning = @idea.iterations.count - 3
+    @other = Idea.where(user_id: 1).order("RANDOM()").limit(3)
+    @colabs = User.all.where.not(id: 1).order("RANDOM()").limit(3)
   end
 
   def new
