@@ -16,7 +16,8 @@
 			%p{:style => "color:white"} 
 				by
 				=link_to "#{@idea.user.name}", @idea.user.fburl, :style => "color:white"
-			%p{:style => "color:white;font-size:1.2em;"}= @idea.about
+			.div{:style => "text-align:left;"}
+				%p{:style => "color:white;font-size:1.2em;"}= @idea.about
 			%p.center{:style => "color:#ccc;font-size:.8em;line-height:1em;margin:0"} RESULT:
 			- if @idea.id == 25
 				%p{:style => "color:white;font-size:1.2em;"} #{@count} sign-ups (LIVE)
@@ -44,7 +45,8 @@
 								%h2= iter.title
 								%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
 								= image_tag iter.image(:large), :class => "img-rounded img-responsive"
-								%p{:style => "padding-top:20px;"}= iter.description
+								.div{:style => "text-align:left;"}
+									%p{:style => "padding-top:20px;"}= iter.description
 							- if @idea.user == current_user
 								=link_to "Edit Iteration", edit_idea_iteration_path(@idea,iter)
 							- else
@@ -69,7 +71,8 @@
 								%h2= iter.title
 								%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
 								= image_tag iter.image(:large), :class => "img-rounded img-responsive"
-								%p{:style => "padding-top:20px;"}= iter.description
+								.div{:style => "text-align:left;"}
+									%p{:style => "padding-top:20px;"}= iter.description
 							- if @idea.user == current_user
 								=link_to "Edit Iteration", edit_idea_iteration_path(@idea,iter)
 							- else
