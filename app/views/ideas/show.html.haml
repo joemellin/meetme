@@ -5,13 +5,13 @@
 			.div{:style => "height:260px;padding-top:20px;"}
 				= image_tag @idea.image.url(:small), :class => "img-responsive img-circle"
 			
-			= link_to "ALL IDEAS", ideas_path, :class => "btn btn-default btn-lg ", :style => "margin-top:10px; width:150px; "
+			= link_to "ALL IDEAS", ideas_path, :class => "btn btn-default", :style => "margin-top:0px; width:150px; color: #FFF;background-color: #555;border-color:#FFF "
 			- if @idea.user == current_user
 				= link_to "+ Add Iteration", new_idea_iteration_path(@idea), :class => "btn btn-default ", :style => "margin-top:10px; width:115px;"
 				= link_to 'Edit', edit_idea_path(@idea), :class => "btn btn-default", :style => "margin-top:10px;"
 				= link_to 'Delete', idea_path, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-default", :style => "margin-top:10px;"
 				= link_to "+ Add Idea", new_idea_path, :class => "btn btn-default ", :style => "margin-top:10px; width:115px;"
-			.div{:style => "padding:30px 0 5px;"}
+			.div{:style => "padding:40px 0 5px;"}
 				%p{:style => "color:#ccc;font-size:.8em;"} OTHER PROJECTS
 			- @other.each do |other|
 				= link_to (image_tag other.image(:thumb), :class => "img-circle img-responsive"), other
@@ -92,8 +92,8 @@
 		.col-sm-3.center.hidden-xs
 			.div{:style => "padding:20px 0 96px; "}
 				= image_tag @idea.user.image, :class => "img-responsive img-circle"
-			.div{:style => "padding:30px 0 5px;"}
-				%p{:style => "color:#ccc;font-size:.8em;"} OTHER COLLABORATORS
+			.div{:style => "padding:17px 0 5px;"}
+				%p{:style => "color:#ccc;font-size:.8em;"} OTHER VISITORS
 			- @colabs.each do |other|
 				= link_to (image_tag other.image, :class => "img-circle img-responsive", :style => "width:100px;"), other
 				.center{:style => "padding:5px 0 20px;color:#000;font-size:.9em;"}= link_to "#{other.name}", other,:style => "color:white"
