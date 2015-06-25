@@ -17,6 +17,7 @@
 				by
 				=link_to "#{@idea.user.name}", @idea.user.fburl, :style => "color:white"
 			%p{:style => "color:white;font-size:1.2em;"}= @idea.about
+			%p{:style => "color:white;font-size:1.2em;"}= @idea.outcome
 			.div{:style => "color:white;font-size:2em;padding: 15px 0 20px"}
 				Creation Process
 			-unless @idea.iterations.first.nil?
