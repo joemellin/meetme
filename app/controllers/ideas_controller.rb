@@ -6,7 +6,7 @@ class IdeasController < ApplicationController
 
 
   def index
-    @ideas = Idea.where(user_id: 1)
+    @ideas = Idea.order("RANDOM()").where(user_id: 1)
     @results = Iteration.all.sort { |p2, p1| p2.created_at <=> p1.created_at }
     @users = User.order("RANDOM()").limit(12)
 
