@@ -6,7 +6,7 @@
 				%p{:style=>"color:white; font-size:1.2em"} 
 					I'm Joe and I would like to welcome you to my portfolio.  My goal is to help you understand a bit more about what it would be like to work with me.  
 					I am an
-					=link_to "ENFP.", "http://www.16personalities.com/enfps-at-work", :style => "color:white; text-decoration: underline;" 
+					=link_to "ENFP.", "http://www.16personalities.com/enfps-at-work", :style => "color:white; font-weight:bold;" 
 					I really like focusing on a metric when building a product and I love human connection / interaction. Please check out some of my projects and scroll down to see my process in action.
 
 
@@ -15,8 +15,7 @@
 			- @ideas.each do |idea|
 				.col-sm-3.center{:style => "padding-bottom:30px;"}
 					= link_to (image_tag idea.image(:medium), :class => "img-circle img-responsive"),idea
-				
-					.center{:style => "padding:15px 0 8px;color:#000;font-size:1.5em;"}= link_to "#{idea.description}",idea,:style => "color:white; text-decoration: underline;"
+					.center{:style => "padding:15px 0 8px;color:#000;font-size:1.5em;"}= link_to "#{idea.description}",idea,:style => "color:white;"
 					%p.center{:style => "color:#ccc;font-size:.7em;line-height:1em;margin:0"} RESULT:
 					- if idea.id == 25
 						%p.center{:style => "color:#ccc;font-size:1em;height:80px;"} #{@count} sign-ups (LIVE)
