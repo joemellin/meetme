@@ -53,7 +53,7 @@
 					:javascript
 						mixpanel.track("Idea Page - Logged In");
 				- else
-					- @idea.iterations.limit(3).sort { |b,a| a.created_at <=> b.created_at }.reverse.each do |iter|
+					- @idea.iterations.limit(3).each do |iter|
 						.well{:style => "background-color:white"}
 							- if iter.feedback?
 								%h2 User Feedback
