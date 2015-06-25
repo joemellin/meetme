@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
     reset_session
     session[:user_id] = user.id
     redirect_to ideas_path
+    UserMailer.welcome_email(user).deliver
   end
 
   def destroy

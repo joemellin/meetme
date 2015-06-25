@@ -18,6 +18,7 @@ gem 'simple_form'
 gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'aws-sdk', '~> 1.20.0'
 gem 'cocoon'
+gem 'figaro'
 gem 'intercom-rails', '~> 0.2.24'
 
 group :development, :test do
