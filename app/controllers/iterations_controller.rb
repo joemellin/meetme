@@ -63,7 +63,7 @@ class IterationsController < ApplicationController
 			@iteration = @idea.iterations.find(params[:id])
 
 			respond_to do |format|
-				if @iteration.update_attributes(params[:iteration])
+				if @iteration.update_attributes(iteration_params)
 					#1st argument of redirect_to is an array, in order to build the correct route to the nested resource comment
 					format.html { redirect_to([@idea, @iteration], :notice => 'Iteration was successfully updated.') }
 					format.xml  { head :ok }
