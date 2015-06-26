@@ -1,9 +1,13 @@
 .div
 	.container{:style => "padding-top:20px;"}		
-		.row{:style => "padding:20px 0 30px;"}	
-			.col-sm-2.col-sm-offset-1
+		.row{:style => "padding:20px 0 30px;"}
+			.col-sm-12.visible-xs.center
+				%p{:style=>"color:white; font-size:1.4em"} Hey! I'm Joe.
+				%p{:style=>"color:white; font-size:1em"} 
+					Welcome to my portfolio.
+			.col-sm-2.col-sm-offset-1.hidden-xs
 				=image_tag "joe.jpeg", :class => "img-circle img-responsive"
-			.col-sm-8{:style => "padding:0px 0 30px;"}
+			.col-sm-8.hidden-xs{:style => "padding:0px 0 30px;"}
 				%p{:style=>"color:white; font-size:2em"} Hey! I'm Joe.
 				%p{:style=>"color:white; font-size:1.2em"} 
 					Welcome to my portfolio. My goal with this portfolio is to help you understand a bit more about what it would be like to work with me.  
@@ -21,9 +25,9 @@
 					.center{:style => "padding:15px 0 8px;color:#000;font-size:1.5em;"}= link_to "#{idea.description}",idea,:style => "color:white;"
 					%p.center{:style => "color:#ccc;font-size:.7em;line-height:1em;margin:0"} RESULT:
 					- if idea.id == 25
-						%p.center{:style => "color:#ccc;font-size:1em;height:80px;"} #{@count} sign-ups (LIVE)
+						%p.center{:style => "color:#ccc;font-size:1em;height:40px;"} #{@count} sign-ups (LIVE)
 					- else
-						%p.center{:style => "color:#ccc;font-size:1em;height:80px;"}=idea.outcome 
+						%p.center{:style => "color:#ccc;font-size:1em;height:40px;"}=idea.outcome 
 - if current_user
 	:javascript
 		mixpanel.track("Home Page - Logged In");
