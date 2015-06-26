@@ -14,7 +14,7 @@ class IdeasController < ApplicationController
 
   def show
     @count = User.all.count
-    @remaning = @idea.iterations.count - 3
+    @remaning = @idea.iterations.count - 5
     @other = Idea.where(user_id: 1).order("RANDOM()").limit(3)
     @colabs = User.all.where.not(id: 1).order("RANDOM()").limit(3)
   end

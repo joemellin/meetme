@@ -58,7 +58,7 @@
 					:javascript
 						mixpanel.track("Idea Page - Logged In");
 				- else
-					- @idea.iterations.order("created_at ASC").limit(3).each do |iter|
+					- @idea.iterations.order("created_at ASC").limit(5).each do |iter|
 						.well{:style => "background-color:white"}
 							- if iter.feedback?
 								%h2 User Feedback
@@ -85,6 +85,11 @@
 						%h3{:style => "color:white"} Join to view all iterations | #{@remaning} more
 						%p{:style => "color:white"}  and get a nice email from Joe :)
 					=link_to (image_tag "https://assets.podomatic.net/images/splash/icon-signup-fb.png?1418681672"), signin_path, :style => "width: 100%; line-height:50px;font-size:2em;"
+					.div{:style => "padding-top:20px;"}
+						%p{:style => "color:#999; font-size:.8em"}
+							Don't like this sign up gate? Message me:
+							=link_to "@joemellin", "https://twitter.com/joemellin", :style => "color:#999"
+					
 					:javascript
 						mixpanel.track("Idea Page - Logged Out");
 				.div{:style => "padding: 20px 0 0px"}

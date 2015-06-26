@@ -1,13 +1,16 @@
 .div
 	.container{:style => "padding-top:20px;"}		
-		.row
-			.col-sm-12{:style => "padding-bottom:30px;"}
-				%p{:style=>"color:white; font-size:2em"} Hello!  
+		.row{:style => "padding:20px 0 30px;"}	
+			.col-sm-2.col-sm-offset-1
+				=image_tag "joe.jpeg", :class => "img-circle img-responsive"
+			.col-sm-8{:style => "padding:0px 0 30px;"}
+				%p{:style=>"color:white; font-size:2em"} Hey! I'm Joe.
 				%p{:style=>"color:white; font-size:1.2em"} 
-					I'm Joe and I would like to welcome you to my portfolio.  My goal is to help you understand a bit more about what it would be like to work with me.  
+					These are projects I have made in the past year.  My goal with this portfolio is to help you understand a bit more about what it would be like to work with me.  
 					I am an
 					=link_to "ENFP.", "http://www.16personalities.com/enfps-at-work", :style => "color:white; font-weight:bold;" 
-					I really like focusing on a metric when building a product and I love human connection / interaction. Please check out some of my projects and scroll down to see my process in action.
+					I really like focusing on a metric when building a product and I love human connection / interaction. I invite you to check out some of my projects and say
+					=link_to "hi.", "https://twitter.com/joemellin", :style => "color:white"
 
 
 
