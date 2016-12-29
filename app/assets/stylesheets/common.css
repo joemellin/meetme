@@ -1,3 +1,8 @@
 .center {
 	text-align: center;
 }
+
+.jumbotron {
+	background-image: url("maxresdefault.jpg");
+	font-size: 200px;
+}

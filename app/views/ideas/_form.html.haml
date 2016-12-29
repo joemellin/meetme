@@ -16,7 +16,10 @@
 		= f.text_area :about, :cols => "60", :rows => "10"
 	.form-group
 		= f.label "Price"
-		= f.text_field :outcome, class: "form-control"
+		= f.text_field :outcome, class: "form-control", placeholder: "Free or $X"
+	.form-group
+		= f.label "Website"
+		= f.text_field :link, class: "form-control", placeholder: "http://..."
 	.form-group
 		= f.label :image
 		= f.file_field :image, class: "form-control"

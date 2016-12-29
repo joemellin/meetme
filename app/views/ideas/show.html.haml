@@ -1,14 +1,14 @@
 .div{:style => "border-bottom: 1px solid #ddd; "}
 .container{:style => "padding-top:0px;"}
 	.row
-		.col-sm-12{:style => "padding-bottom:30px"}
+		.col-sm-12{:style => "padding-bottom:20px"}
 			.div
 				= image_tag @idea.image.url(:cover), :class => "img-responsive"
-		.col-sm-6.col-sm-offset-2{:style => "padding-top:50px"}
+		.col-sm-6.col-sm-offset-2{:style => "padding-top:0px"}
 			%h1= @idea.description
 			%p= @idea.about
 			=link_to "Edit Experience", edit_idea_path, :class => "btn btn-link"
-		.col-sm-2{:style => "padding-top:80px"}
+		.col-sm-2{:style => "padding-top:30px"}
 			= link_to "Learn More", @idea.link, :class => "btn btn-lg btn-success", :target => "_blank"
 			.div{:style => "padding-top:30px"}
 				%p
