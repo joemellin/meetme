@@ -7,8 +7,9 @@
 		.col-sm-6.col-sm-offset-2{:style => "padding-top:50px"}
 			%h1= @idea.description
 			%p= @idea.about
+			=link_to "Edit Experience", edit_idea_path, :class => "btn btn-link"
 		.col-sm-2{:style => "padding-top:80px"}
-			= link_to "Learn More", @idea.link, :class => "btn btn-default", :target => "_blank"
+			= link_to "Learn More", @idea.link, :class => "btn btn-lg btn-success", :target => "_blank"
 			.div{:style => "padding-top:30px"}
 				%p
 					%i= @idea.outcome
