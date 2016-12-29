@@ -55,7 +55,7 @@
 				%hr
 		.col-sm-12.center.hidden-xs		
 			.div{:style => "padding:40px 0 5px;"}
-				%p{:style => "color:#ccc;font-size:.8em;"} OTHER PROJECTS
+				%p{:style => "color:#ccc;font-size:.9em;"} OTHER PROJECTS
 			- @other.each do |other|
 				= link_to (image_tag other.image(:thumb), :class => "img-circle img-responsive"), other
 				.center{:style => "padding:5px 0 20px;color:#000;font-size:.9em;"}= link_to "#{other.description}", other,:style => "color:white"
