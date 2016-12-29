@@ -4,26 +4,12 @@
 	.form-group
 		%p Title
 		= f.text_area :popword, :cols => "60", :rows => "1"
-	.form-group
-		%p POP Embed Code
-		= f.text_area :pop, :cols => "60", :rows => "1"
-	%hr
-	%p OR enter a users feedback
+
 	.form-group
 		= f.label :feedback
 		= f.text_area :feedback, :cols => "60", :rows => "10"
 	%hr
-	%p OR Document a prototype (If there is feedback the below info will not show)
-	.form-group
-		= f.label :title
-		= f.text_field :title
 
-	.form-group
-		= f.label :image
-		= f.file_field :image, class: "form-control"
-	.form-group
-		= f.label :description
-		= f.text_field :description
 	.form-group
 		= f.hidden_field :idea_id
 	.form-group

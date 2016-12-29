@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625174444) do
+ActiveRecord::Schema.define(version: 20161229045742) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "ideas", force: true do |t|
     t.string   "description"
@@ -26,7 +29,7 @@ ActiveRecord::Schema.define(version: 20150625174444) do
     t.string   "outcome"
   end
 
-  add_index "ideas", ["user_id"], name: "index_ideas_on_user_id"
+  add_index "ideas", ["user_id"], name: "index_ideas_on_user_id", using: :btree
 
   create_table "iterations", force: true do |t|
     t.string   "title"
@@ -41,15 +44,10 @@ ActiveRecord::Schema.define(version: 20150625174444) do
     t.text     "feedback"
     t.string   "pop"
     t.string   "popword"
+    t.integer  "userid"
   end
 
-  add_index "iterations", ["idea_id"], name: "index_iterations_on_idea_id"
-
-  create_table "ratings", force: true do |t|
-    t.string   "success"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "iterations", ["idea_id"], name: "index_iterations_on_idea_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"

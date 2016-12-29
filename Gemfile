@@ -19,7 +19,7 @@ gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'aws-sdk', '~> 1.20.0'
 gem 'cocoon'
 gem 'intercom-rails', '~> 0.2.24'
-
+gem 'pg'
 
 group :development, :test do
 	gem 'better_errors'
@@ -27,10 +27,8 @@ group :development, :test do
 	gem 'html2haml'
 	gem 'quiet_assets'
 	gem 'rails_layout'
-	gem 'sqlite3'
 end
 
 group :production do
-	gem 'pg'
 	gem 'rails_12factor'
 end

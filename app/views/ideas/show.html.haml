@@ -1,107 +1,58 @@
 .div{:style => "border-bottom: 1px solid #ddd; "}
-.container{:style => "padding-top:20px;"}
+.container{:style => "padding-top:0px;"}
 	.row
-		.col-sm-3.center.hidden-xs
-			.div{:style => "height:260px;padding-top:20px;"}
-				= image_tag @idea.image.url(:small), :class => "img-responsive img-circle"
+		.col-sm-12
+			.div
+				= image_tag @idea.image.url(:cover), :class => "img-responsive"
+		.col-sm-8.col-sm-offset-2.center
+			%h1= @idea.description
+			%p= @idea.about
+			%p= @idea.outcome
+			= link_to "Share your Experience", new_idea_iteration_path(@idea), :class => "btn btn-default"
+		
+			.div{:style=>"padding-top:100px"}
+				Others Experiences
+			-unless @idea.iterations.first.nil?
+				- @idea.iterations.sort { |a,b| a.created_at <=> b.created_at }.each do |iter|	
+					%p{:style => "text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+					.div{:style => "text-align:left;"}
+					%p=iter.feedback.gsub(/\n/, '<br />').html_safe
+						
+					- if @idea.user == current_user
+						=link_to "Edit Iteration", edit_idea_iteration_path(@idea,iter)
+					- else
+					
+			- else
+				- @idea.iterations.order("created_at ASC").limit(5).each do |iter|
+					.well{:style => "background-color:white"}
+						- if iter.feedback?
+							%h2 User Feedback
+							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+							.div{:style => "text-align:left;"}
+								%p=iter.feedback.gsub(/\n/, '<br />').html_safe
+						- elsif iter.pop?
+							%h2 POP Prototype
+							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+							%p= iter.popword
+							
+							%iframe{:allowTransparency => "true", :frameborder => "0", :height => "908", :src => "https://popapp.in/w/projects/#{iter.pop}/embedded", :width => "420"}
+							%p{:style => "color:#888"} CLICKABLE PROTOTYPE
+						- else
+							%h2= iter.title
+							%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
+							= image_tag iter.image(:large), :class => "img-rounded img-responsive"
+							.div{:style => "text-align:left;"}
+								%p{:style => "padding-top:20px;"}= iter.description
+						- if @idea.user == current_user
+							=link_to "Edit Iteration", edit_idea_iteration_path(@idea,iter)
 			
-			= link_to "ALL IDEAS", ideas_path, :class => "btn btn-default", :style => "margin-top:0px; width:150px; color: #FFF;background-color: #555;border-color:#FFF "
-			- if @idea.user == current_user
-				= link_to "+ Add Iteration", new_idea_iteration_path(@idea), :class => "btn btn-default ", :style => "margin-top:10px; width:115px;"
-				= link_to 'Edit', edit_idea_path(@idea), :class => "btn btn-default", :style => "margin-top:10px;"
-				= link_to 'Delete', idea_path, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-default", :style => "margin-top:10px;"
-				= link_to "+ Add Idea", new_idea_path, :class => "btn btn-default ", :style => "margin-top:10px; width:115px;"
+				.div{:style => "padding: 20px 0 0px"}
+					%hr
+		.col-sm-12.center.hidden-xs		
 			.div{:style => "padding:40px 0 5px;"}
 				%p{:style => "color:#ccc;font-size:.8em;"} OTHER PROJECTS
 			- @other.each do |other|
 				= link_to (image_tag other.image(:thumb), :class => "img-circle img-responsive"), other
 				.center{:style => "padding:5px 0 20px;color:#000;font-size:.9em;"}= link_to "#{other.description}", other,:style => "color:white"
-		.col-sm-6.center
-			%span{:style => "font-size:3em;color:white"}= @idea.description
-			%p{:style => "color:white"} 
-				by
-				=link_to "#{@idea.user.name}", @idea.user.fburl, :style => "color:white"
-			.div{:style => "text-align:left;"}
-				%p{:style => "color:white;font-size:1.2em;"}= @idea.about
-			%p.center{:style => "color:#ccc;font-size:.8em;line-height:1em;margin:0"} RESULT:
-			- if @idea.id == 25
-				%p{:style => "color:white;font-size:1.2em;"} #{@count} sign-ups (LIVE)
-			- else
-				%p{:style => "color:white;font-size:1.2em;"}= @idea.outcome
-			.div{:style => "color:white;font-size:2em;padding: 15px 0 20px"}
-				Creation Process
-			-unless @idea.iterations.first.nil?
-				- if current_user
-					- @idea.iterations.sort { |a,b| a.created_at <=> b.created_at }.each do |iter|
-						.well{:style => "background-color:white"}
-							- if iter.feedback?
-								%h2 User Feedback
-								%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-								.div{:style => "text-align:left;"}
-									%p=iter.feedback.gsub(/\n/, '<br />').html_safe
-							- elsif iter.pop?
-								%h2 POP Prototype
-								%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-								%p= iter.popword
-								
-								%iframe{:allowTransparency => "true", :frameborder => "0", :height => "908", :src => "https://popapp.in/w/projects/#{iter.pop}/embedded", :width => "420"}
-								%p{:style => "color:#888"} CLICKABLE PROTOTYPE
-							- else
-								%h2= iter.title
-								%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-								= image_tag iter.image(:large), :class => "img-rounded img-responsive"
-								.div{:style => "text-align:left;"}
-									%p{:style => "padding-top:20px;"}= iter.description
-							- if @idea.user == current_user
-								=link_to "Edit Iteration", edit_idea_iteration_path(@idea,iter)
-							- else
-					:javascript
-						mixpanel.track("Idea Page - Logged In");
-				- else
-					- @idea.iterations.order("created_at ASC").limit(5).each do |iter|
-						.well{:style => "background-color:white"}
-							- if iter.feedback?
-								%h2 User Feedback
-								%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-								.div{:style => "text-align:left;"}
-									%p=iter.feedback.gsub(/\n/, '<br />').html_safe
-							- elsif iter.pop?
-								%h2 POP Prototype
-								%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-								%p= iter.popword
-								
-								%iframe{:allowTransparency => "true", :frameborder => "0", :height => "908", :src => "https://popapp.in/w/projects/#{iter.pop}/embedded", :width => "420"}
-								%p{:style => "color:#888"} CLICKABLE PROTOTYPE
-							- else
-								%h2= iter.title
-								%p{:style => "color:#ccc;text-transform: uppercase; font-weight:bold; font-size:.8em;"} Created #{time_ago_in_words(iter.created_at)} ago
-								= image_tag iter.image(:large), :class => "img-rounded img-responsive"
-								.div{:style => "text-align:left;"}
-									%p{:style => "padding-top:20px;"}= iter.description
-							- if @idea.user == current_user
-								=link_to "Edit Iteration", edit_idea_iteration_path(@idea,iter)
-							- else
-					.div{:style => "padding: 10px 0 10px"}
-						%h3{:style => "color:white"} Join to view all iterations | #{@remaning} more
-						%p{:style => "color:white"}  and get a nice email from Joe :)
-					=link_to (image_tag "https://assets.podomatic.net/images/splash/icon-signup-fb.png?1418681672"), signin_path, :style => "width: 100%; line-height:50px;font-size:2em;"
-					.div{:style => "padding-top:20px;"}
-						%p{:style => "color:#999; font-size:.8em"}
-							Don't like this sign up gate? Message me:
-							=link_to "@joemellin", "https://twitter.com/joemellin", :style => "color:#999"
-					
-					:javascript
-						mixpanel.track("Idea Page - Logged Out");
-				.div{:style => "padding: 20px 0 0px"}
-					%hr
-		.col-sm-3.center.hidden-xs
-			.div{:style => "padding:20px 0 96px; "}
-				= image_tag @idea.user.image, :class => "img-responsive img-circle"
-			.div{:style => "padding:17px 0 5px;"}
-				%p{:style => "color:#ccc;font-size:.8em;"} OTHER VISITORS
-			- @colabs.each do |other|
-				= link_to (image_tag other.image, :class => "img-circle img-responsive", :style => "width:100px;"), other
-				.center{:style => "padding:5px 0 20px;color:#000;font-size:.9em;"}= link_to "#{other.name}", other,:style => "color:white"
-			
 
 	
