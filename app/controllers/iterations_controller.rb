@@ -41,7 +41,6 @@ class IterationsController < ApplicationController
 	# POST /iterations.json
 	def create
 		@iteration = @idea.iterations.new(iteration_params)
-
 		respond_to do |format|
 			if @iteration.save
 				format.html { redirect_to idea_path(@idea) }

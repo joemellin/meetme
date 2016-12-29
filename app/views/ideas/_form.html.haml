@@ -8,22 +8,21 @@
 				- @idea.errors.full_messages.each do |msg|
 					%li= msg
 	.form-group
-		= f.label :description
+		= f.label "Title"
 		= f.text_field :description, class: "form-control"
 
 	.form-group
 		= f.label :about
 		= f.text_area :about, :cols => "60", :rows => "10"
 	.form-group
-		= f.label :outcome
+		= f.label "Price"
 		= f.text_field :outcome, class: "form-control"
+	.form-group
+		= f.label :link
+		= f.text_field :link, class: "form-control"
 	.form-group
 		= f.label :image
 		= f.file_field :image, class: "form-control"
-	#iterations
-		= f.simple_fields_for :iterations do |task|
-			= render 'iteration_fields', :f => task
-		.links
-			= link_to_add_association '+ Add File', f, :iterations, :class => 'btn'
+
 	.form-group
 		= f.submit class: "btn btn-primary"
